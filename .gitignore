@@ -1,0 +1,11 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+spec/bumeran_initializer_helper.rb
+**/.DS_Store
