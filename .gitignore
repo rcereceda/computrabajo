@@ -7,5 +7,5 @@
 /pkg/
 /spec/reports/
 /tmp/
-spec/bumeran_initializer_helper.rb
+spec/computrabajo_initializer_helper.rb
 **/.DS_Store

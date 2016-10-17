@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rcereced@gmail.com"]
 
   spec.summary       = "A gem to access the Computrabajo API"
-  spec.description   = "A gem to access the Computrabajo API: https://developers.bumeran.com"
+  spec.description   = "A gem to access the Computrabajo API: http://www.computrabajo.com"
   spec.homepage      = "https://github.com/rcereceda"
   spec.license       = "MIT"
 
