@@ -21,7 +21,7 @@ module Computrabajo
         LevelStudy: 0,                      # required
         Skills: [""],                       # optional
         LanguagesAndLevels: [{
-          "Language": "", "Level": ""
+          Language: "", Level: ""
           }],                               # optional
         DrivingLicense: [""],               # optional
         DontShowSalary: false,              # optional

@@ -14,8 +14,8 @@ class ComputrabajoFixture
     publication.body[:LevelStudy]       = "2"                                       # required
     publication.body[:Skills]           = ["1", "3"]                                # optional
     publication.body[:LanguagesAndLevels] = [{
-        "Language": "47", 
-        "Level": "5"
+        Language: "47", 
+        Level: "5"
         }]                                                                          # optional
     publication.body[:DrivingLicense]   = ["1"]                                     # optional
     publication.body[:DontShowSalary]   = true                                      # optional
