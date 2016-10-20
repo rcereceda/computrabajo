@@ -8,7 +8,7 @@ class ComputrabajoFixture
     publication.body[:Country]          = "34"                                      # required
     publication.body[:Location]         = "11"                                      # required
     publication.body[:City]             = "231"                                     # required
-    publication.body[:EmploymenType]    = "1"                                       # required
+    publication.body[:EmploymentType]    = "1"                                      # required
     publication.body[:ContractType]     = "1"                                       # required
     publication.body[:Salary]           = "500000"                                  # required
     publication.body[:LevelStudy]       = "2"                                       # required

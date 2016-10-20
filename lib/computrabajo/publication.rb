@@ -19,17 +19,15 @@ module Computrabajo
         ContractType: 0,                    # required
         Salary: 0,                          # required
         LevelStudy: 0,                      # required
-        Skills: [""],                       # optional
-        LanguagesAndLevels: [{
-          Language: "", Level: ""
-          }],                               # optional
-        DrivingLicense: [""],               # optional
+        Skills: [],                         # optional
+        LanguagesAndLevels: [],             # optional
+        DrivingLicense: [],                 # optional
         DontShowSalary: false,              # optional
-        Experience: "",                     # required
-        Startdate: "",                      # optional
-        Vacancies: "",                      # required
-        AgeMin: "",                         # optional
-        AgeMax: "",                         # optional
+        Experience: 0,                      # required
+        Startdate: Time.new.strftime("%Y/%m/%d"), # optional
+        Vacancies: 0,                       # required
+        AgeMin: 0,                          # optional
+        AgeMax: 0,                          # optional
         TravelAvailability: false,          # required
         ResidenceChangeAvailability: false, # required
         Disability: false,                  # required
