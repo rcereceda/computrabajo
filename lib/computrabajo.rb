@@ -6,7 +6,7 @@ require 'erb'
 
 module Computrabajo
   include HTTParty
-  base_uri 'https://iapi.computrabajo.com'
+  base_uri 'https://api.computrabajo.com'
 
   # API login configuration, need initialization setup to work
   mattr_accessor :username
@@ -43,9 +43,9 @@ module Computrabajo
     yield self
   end
 
-  def self.environment(use_environment="production")
+  def self.environment(use_environment="development")
     if use_environment == "production"
-      Computrabajo.base_uri('https://iapi.computrabajo.com')
+      Computrabajo.base_uri('https://api.computrabajo.com')
     elsif use_environment == "development"
       Computrabajo.base_uri('https://iapi.computrabajo.com')
     else
@@ -91,7 +91,7 @@ module Computrabajo
 
   def self.create_publication(json)
     Computrabajo.initialize
-    create_publication_path = '/public/v1/integration/BCI/add'
+    create_publication_path = '/public/v1/integration/4Talent/add'
     
     body = @@options.merge(json).to_json
     response = self.post(create_publication_path, {body: body, headers: { "Accept" => "application/json", "Content-Type" => "application/json"}})
@@ -107,7 +107,7 @@ module Computrabajo
 
   def self.get_publication(publication_id)
     Computrabajo.initialize
-    get_publication_path = "/public/v1/integration/BCI/get/user/#{@@options[:username]}/pass/#{@@options[:password]}/offer/#{publication_id}"
+    get_publication_path = "/public/v1/integration/4Talent/get/user/#{@@options[:username]}/pass/#{@@options[:password]}/offer/#{publication_id}"
     response = self.get(get_publication_path)
 
     return Parser.parse_response_to_json(response)
@@ -131,7 +131,7 @@ module Computrabajo
 
   def self.destroy_publication(json)
     Computrabajo.initialize
-    destroy_publication_path = '/public/v1/integration/BCI/delete'
+    destroy_publication_path = '/public/v1/integration/4Talent/delete'
     body = @@options.merge(json).to_json
     response = self.post(destroy_publication_path, {body: body, headers: { "Accept" => "application/json", "Content-Type" => "application/json", "X-HTTP-Method-Override" => "DELETE"}})
 
