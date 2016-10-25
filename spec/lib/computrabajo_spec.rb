@@ -23,4 +23,11 @@ describe Computrabajo do
     expect(deleted_publication.parsed_response).to eq("Offer deleted")
   end
 
+  it 'can get postulants' do
+    publication_id = 4025715
+    publication = Computrabajo.get_postulaciones_en_aviso(publication_id)
+    pp publication
+    expect(publication.try(:length)).to be > 0
+  end
+
 end

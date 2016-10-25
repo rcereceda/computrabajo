@@ -78,9 +78,9 @@ module Computrabajo
   end
 
   # # alias
-  # def self.get_postulaciones_en_aviso(aviso_id)
-  #   Computrabajo.get_postulations_in_publication(aviso_id)
-  # end
+  def self.get_postulaciones_en_aviso(aviso_id)
+    Computrabajo.get_postulations_in_publication(aviso_id)
+  end
 
   # alias
   def self.destroy_aviso(json)
@@ -113,21 +113,13 @@ module Computrabajo
     return Parser.parse_response_to_json(response)
   end
 
-  # def self.get_postulations_in_publication(publication_id, page=0, postulations_per_page=20)
-  #   Computrabajo.initialize
-  #   get_postulations_in_publication_path = "/v0/empresas/avisos/#{publication_id}/postulaciones"
-  #   response = self.get(get_postulations_in_publication_path, @@options.merge(query: @@options[:query].merge({page: page, perPage: postulations_per_page})))
+  def self.get_postulations_in_publication(publication_id)
+    Computrabajo.initialize
+    get_postulations_in_publication_path = "/public/v1/integration/4Talent/applies/user/#{@@options[:username]}/pass/#{@@options[:password]}/offer/#{publication_id}"
+    response = self.get(get_postulations_in_publication_path)
 
-  #   return Parser.parse_response_to_json(response)
-  # end
-
-  # def self.get_postulation(postulation_id)
-  #   Computrabajo.initialize
-  #   get_postulation_path = "/v0/empresas/postulaciones/#{postulation_id}"
-  #   response = self.get(get_postulation_path, @@options)
-
-  #   return Parser.parse_response_to_json(response)
-  # end
+    return Parser.parse_response_to_json(response)
+  end
 
   def self.destroy_publication(json)
     Computrabajo.initialize
