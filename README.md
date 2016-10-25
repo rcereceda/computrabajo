@@ -1,41 +1,56 @@
 # Computrabajo
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/computrabajo`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem was made to connect to the Computrabajo api: https://api.computrabajo.com 
 
-TODO: Delete this and the text above, and describe your gem
+## Getting started
 
-## Installation
-
-Add this line to your application's Gemfile:
+Computrabajo works with Rails 3.2 onwards. You can add it to your Gemfile with:
 
 ```ruby
-gem 'computrabajo'
+gem 'computrabajo', :git => 'git@github.com:rcereceda/computrabajo.git'
 ```
 
-And then execute:
+...or can fetch the latest developer version with:
 
-    $ bundle
+```ruby
+gem 'computrabajo', :git => 'git@github.com:rcereceda/computrabajo.git', :branch => 'develop'
+```
+### Configuration
 
-Or install it yourself as:
+After you finished the gem installation, you need to configure it with your Computrabajo user information. You can do it filling a file like config/initializers/computrabajo.rb with:
 
-    $ gem install computrabajo
+```ruby
+Computrabajo.setup do |config|
+  config.username          = ""   # username provided by Computrabajo
+  config.password          = ""   # password provided by Computrabajo
+  config.contact_name      = ""   # your contact name
+  config.contact_email     = ""   # your contact email (if not empty, will be shown on the offer detail for registered candidates)
+  config.contact_telephone = ""   # your phone number
+  config.contact_url       = ""   # your company URL
+  config.job_reference     = ""   # your internal offer reference
+  config.environment "production" # You can choose between production or development
+end
+```
+## How to use
 
-## Usage
+All return a json object, and raise an error (401, 403, 500) if there was one:
 
-TODO: Write usage instructions here
+### Create (publish) a new publication
+```ruby
+publication = Computrabajo::Publication.new
+Computrabajo.create_aviso(publication.body)
 
-## Development
+```
+### Get a publication data
+```ruby
+Computrabajo.get_aviso(publication_id)
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Destroy a publication
+```ruby
+publication = { offerId: publication_id }
+Computrabajo.destroy_aviso(publication)
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/computrabajo. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+## TODO
+ - Add the missing methods to obtain the list of postulants

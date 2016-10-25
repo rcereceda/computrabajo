@@ -43,7 +43,7 @@ module Computrabajo
     yield self
   end
 
-  def self.environment(use_environment="development")
+  def self.environment(use_environment="production")
     if use_environment == "production"
       Computrabajo.base_uri('https://api.computrabajo.com')
     elsif use_environment == "development"
