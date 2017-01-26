@@ -32,7 +32,8 @@ module Computrabajo
         ResidenceChangeAvailability: false, # required
         Disability: false,                  # required
         HiddenCompany: false,               # optional
-        HiddenCompanyName: ""               # dependent
+        HiddenCompanyName: "",              # dependent
+        KillerQuestions: []                 # optional
       }
     end
   end

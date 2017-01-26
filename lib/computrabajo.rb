@@ -6,7 +6,7 @@ require 'erb'
 
 module Computrabajo
   include HTTParty
-  base_uri 'https://api.computrabajo.com'
+  base_uri 'https://api-ats.computrabajo.com'
 
   # API login configuration, need initialization setup to work
   mattr_accessor :username
@@ -45,11 +45,11 @@ module Computrabajo
 
   def self.environment(use_environment="production")
     if use_environment == "production"
-      Computrabajo.base_uri('https://api.computrabajo.com')
+      Computrabajo.base_uri('https://api-ats.computrabajo.com')
     elsif use_environment == "development"
-      Computrabajo.base_uri('https://iapi.computrabajo.com')
+      Computrabajo.base_uri('https://iapi-ats.computrabajo.com')
     else
-      Computrabajo.base_uri('https://iapi.computrabajo.com')
+      Computrabajo.base_uri('https://iapi-ats.computrabajo.com')
     end
   end
 

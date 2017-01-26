@@ -29,6 +29,12 @@ class ComputrabajoFixture
     publication.body[:Disability]       = false                                     # required
     publication.body[:HiddenCompany]    = true                                      # optional
     publication.body[:HiddenCompanyName] = "Importante empresa del sector"          # dependent
+    publication.body[:KillerQuestions]  = [{
+        id_killer_question_type: "1",
+        title: "open killer question type",
+        order: "1",
+        score: "0"
+        }]
 
     return publication
   end
