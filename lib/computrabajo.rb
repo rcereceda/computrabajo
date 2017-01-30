@@ -169,7 +169,6 @@ module Computrabajo
           # "All good!"
           return JSON.parse(response.body)
         when 401
-          # Computrabajo.invalidate_access_token!
           raise "Error 401: Unauthorized. Check login info.\n #{response.body}"
         when 403
           raise "Error 403: Forbidden"
