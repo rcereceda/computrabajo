@@ -13,7 +13,8 @@ describe Computrabajo do
     publication_id = result["OfferId"]
     expect(publication_id).to be > 0
 
-    publication = Computrabajo.get_aviso(publication_id)
+    publication.body[:offerId] = publication_id
+    publication = Computrabajo.get_aviso(publication.body)
     pp publication
     expect(publication["Status"]).to be > 0
 
@@ -24,8 +25,9 @@ describe Computrabajo do
   end
 
   it 'can get postulants' do
-    publication_id = 4025715
-    publication = Computrabajo.get_postulaciones_en_aviso(publication_id)
+    publication = ComputrabajoFixture.publication
+    publication.body[:offerId] = 4025715
+    publication = Computrabajo.get_postulaciones_en_aviso(publication.body)
     pp publication
     expect(publication.try(:length)).to be > 0
   end

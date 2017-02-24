@@ -65,7 +65,7 @@ module Computrabajo
     }
   end
 
-  # Publicaciones / Avisos
+  # Aliases
 
   # alias
   def self.create_aviso(json)
@@ -73,13 +73,13 @@ module Computrabajo
   end
 
   # alias
-  def self.get_aviso(aviso_id)
-    Computrabajo.get_publication(aviso_id)
+  def self.get_aviso(json)
+    Computrabajo.get_publication(json)
   end
 
-  # # alias
-  def self.get_postulaciones_en_aviso(aviso_id)
-    Computrabajo.get_postulations_in_publication(aviso_id)
+  # alias
+  def self.get_postulaciones_en_aviso(json)
+    Computrabajo.get_postulations_in_publication(json)
   end
 
   # alias
@@ -87,7 +87,7 @@ module Computrabajo
     Computrabajo.destroy_publication(json)
   end
 
-  #
+  # Methods
 
   def self.create_publication(json)
     Computrabajo.initialize
@@ -105,20 +105,34 @@ module Computrabajo
     end
   end
 
-  def self.get_publication(publication_id)
+  def self.get_publication(json)
     Computrabajo.initialize
-    get_publication_path = "/public/v1/integration/4Talent/get/user/#{@@options[:username]}/pass/#{@@options[:password]}/offer/#{publication_id}"
-    response = self.get(get_publication_path)
+    get_publication_path = '/public/v1/integration/4Talent/get'
+    body = @@options.merge(json).to_json
+    response = self.post(get_publication_path, {body: body, headers: { "Accept" => "application/json", "Content-Type" => "application/json"}})
 
-    return Parser.parse_response_to_json(response)
+    if Parser.parse_response(response)
+      case response.code
+        when 200
+          # "Publication obtained, All good!"
+          return response
+      end
+    end
   end
 
-  def self.get_postulations_in_publication(publication_id)
+  def self.get_postulations_in_publication(json)
     Computrabajo.initialize
-    get_postulations_in_publication_path = "/public/v1/integration/4Talent/applies/user/#{@@options[:username]}/pass/#{@@options[:password]}/offer/#{publication_id}"
-    response = self.get(get_postulations_in_publication_path)
+    get_postulations_in_publication_path = '/public/v1/integration/4Talent/applies'
+    body = @@options.merge(json).to_json
+    response = self.post(get_postulations_in_publication_path, {body: body, headers: { "Accept" => "application/json", "Content-Type" => "application/json"}})
 
-    return Parser.parse_response_to_json(response)
+    if Parser.parse_response(response)
+      case response.code
+        when 200
+          # "Postulants obtained, All good!"
+          return response
+      end
+    end
   end
 
   def self.destroy_publication(json)
